@@ -12,11 +12,14 @@ var callback = function(response) {
   
   
   console.log("I'm about to make the request!");
-  
-  
-  
   console.log("I've made the request!");
   console.log('Response: ', response)
+
+  response.on('data', function(chunk) {
+    console.log('[-- CHUNK OF LENGTH ' + chunk.length + ' --]');
+    console.log(chunk.toString());
+  });
 }
 
 https.request(options, callback).end();
+
